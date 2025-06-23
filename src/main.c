@@ -1,6 +1,8 @@
 #include "stm32f4xx_hal.h"
 #include "bme280.h"
 #include "ssd1306.h"
+#include "fonts.h"
+#include <stdio.h>
 
 I2C_HandleTypeDef hi2c1;
 
@@ -28,11 +30,11 @@ int main(void)
 
         SSD1306_Clear();
         snprintf(buffer, sizeof(buffer), "T: %.2f C", temp);
-        SSD1306_DrawString(0, 0, buffer, Font_7x10, White);
+        SSD1306_DrawString(0, 0, buffer, &Font_7x10, White);
         snprintf(buffer, sizeof(buffer), "H: %.2f %%", hum);
-        SSD1306_DrawString(0, 12, buffer, Font_7x10, White);
+        SSD1306_DrawString(0, 12, buffer, &Font_7x10, White);
         snprintf(buffer, sizeof(buffer), "P: %.2f hPa", pres);
-        SSD1306_DrawString(0, 24, buffer, Font_7x10, White);
+        SSD1306_DrawString(0, 24, buffer, &Font_7x10, White);
         SSD1306_UpdateScreen();
 
         HAL_Delay(1000);
